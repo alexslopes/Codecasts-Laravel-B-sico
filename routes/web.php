@@ -18,16 +18,29 @@ Route::get('/', function () {
     //echo $customers->render();
 
     //CRIAR NOVO CUSTOMER
-    //$customer = new Teste\Customer();
-    //$customer->name = 'Fabio Vedovelli';
-    //$customer->city = 'Santo Andre';
-    //$customer->state = 'SP';
-    //$customer->special_customer = true;
-    //$customer->birthdate = '1974-08-07 00:00:00';
-    //$customer->save();
-    //dd($customer->toArray());
+    $data = [
+        'name' => 'Fabio Vedovelli',
+        'city' => 'Santo Andre',
+        'state' => 'SP',
+        'special_customer' => true,
+        'birthdate' => '1974-08-07 00:00:00'
+    ];
+
+    $customer = Teste\Customer::create($data);
+    dd($customer->toArray());
 
     //TRAZER CUSTOMER ID 2
+
+    $data = [
+        'name' => 'Um novo cara',
+        'birthdate' => '1986-01-01 00:00:00',
+    ];
+
     $customer = Teste\Customer::find(1);
-    dd($customer->birthdate);
+    //dd($customer->birthdate);
+
+    $customer->name = "um outro cara";
+    //$customer->save();
+
+    $customer->update($data);
 });
