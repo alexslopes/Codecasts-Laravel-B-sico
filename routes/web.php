@@ -16,10 +16,6 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix' => 'admin'], function (){
-    Route::get('clientes', ['as' => 'customer.index', 'uses' => 'CustomerController@index']);
-    Route::get('cliente/{id}', ['as' => 'customer.get', 'uses' => 'CustomerController@get']);
-    Route::post('cliente', ['as' => 'customer.create', 'uses' => 'CustomerController@create']);
-    Route::put('cliente/{id}', ['as' => 'customer.update', 'uses' => 'CustomerController@update']);
-    Route::delete('cliente/{id}', ['as' => 'customer.delete', 'uses' => 'CustomerController@delete']);
+   Route::resource('clientes', 'CustomerController');
 });
 
