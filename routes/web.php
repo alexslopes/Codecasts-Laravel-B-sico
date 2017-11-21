@@ -12,35 +12,14 @@
 */
 
 Route::get('/', function () {
-    //LISTAR CUSTOMERS
-    //$customers = Teste\Customer::paginate(10);
-    //dd($customers);
-    //echo $customers->render();
-
-    //CRIAR NOVO CUSTOMER
-    $data = [
-        'name' => 'Fabio Vedovelli',
-        'city' => 'Santo Andre',
-        'state' => 'SP',
-        'special_customer' => true,
-        'birthdate' => '1974-08-07 00:00:00'
-    ];
-
-    $customer = Teste\Customer::create($data);
-    dd($customer->toArray());
-
-    //TRAZER CUSTOMER ID 2
-
-    $data = [
-        'name' => 'Um novo cara',
-        'birthdate' => '1986-01-01 00:00:00',
-    ];
-
-    $customer = Teste\Customer::find(1);
-    //dd($customer->birthdate);
-
-    $customer->name = "um outro cara";
-    //$customer->save();
-
-    $customer->update($data);
+   return 'Seja bem vindo a curso Laravel básico com codecasts!';
 });
+
+Route::group(['prefix' => 'admin'], function (){
+    Route::get('clientes', ['as' => 'customer.index', 'uses' => 'CustomerController@index']);
+    Route::get('cliente/{id}', ['as' => 'customer.get', 'uses' => 'CustomerController@get']);
+    Route::post('cliente', ['as' => 'customer.create', 'uses' => 'CustomerController@create']);
+    Route::put('cliente/{id}', ['as' => 'customer.update', 'uses' => 'CustomerController@update']);
+    Route::delete('cliente/{id}', ['as' => 'customer.delete', 'uses' => 'CustomerController@delete']);
+});
+
