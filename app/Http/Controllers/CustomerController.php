@@ -3,6 +3,7 @@
 namespace Teste\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Teste\Customer;
 
 class CustomerController extends Controller
 {
@@ -13,8 +14,9 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $customers = Customer::all();
+        return view('customers.index')->with(compact('customers'));
+    }  
 
     /**
      * Show the form for creating a new resource.
